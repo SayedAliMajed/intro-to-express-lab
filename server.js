@@ -27,6 +27,8 @@ app.get('/roll/:itemNumber',(req, res) => {
     res.send (`You rolled a ${rolledNumber}.`);
 });
 
+// 3. I Want THAT One !
+
   const collectibles = [
     { name: 'shiny ball', price: 5.95 },
     { name: 'autographed picture of a dog', price: 10 },
@@ -40,4 +42,38 @@ app.get('/roll/:itemNumber',(req, res) => {
     }
     const {name, price} = collectibles[idx];
     res.send(`"So, you want the ${name}? For ${price}, it can be yours!”`);
+  });
+
+  // 4. Filter Shoes by Query Parameters
+
+  const shoes = [
+      { name: "Birkenstocks", price: 50, type: "sandal" },
+      { name: "Air Jordans", price: 500, type: "sneaker" },
+      { name: "Air Mahomeses", price: 501, type: "sneaker" },
+      { name: "Utility Boots", price: 20, type: "boot" },
+      { name: "Velcro Sandals", price: 15, type: "sandal" },
+      { name: "Jet Boots", price: 1000, type: "boot" },
+      { name: "Fifty-Inch Heels", price: 175, type: "heel" }
+  ];
+
+  app.get('/shoes', (req, res) => {
+
+    const minPrice = parseFloat(req.query['min-price']);
+    const maxPrice = parseFloat(req.query['max-price']);
+    const type = req.query.type;
+
+    let results = shoes;
+
+    if (!isNaN(minPrice)) {
+        results = results.filter(shoe => shoe.price >= minPrice);
+    }
+
+    if (!isNaN(maxPrice)) {
+        results=results.filter(shoe => shoe.price <= maxPrice);
+    }
+   
+    else {shoes.filter(shoe=> shoe.type === 'type');
+
+    }
+     res.send(results);
   });
