@@ -72,7 +72,7 @@ app.get('/roll/:itemNumber',(req, res) => {
         results=results.filter(shoe => shoe.price <= maxPrice);
     }
    
-    else {shoes.filter(shoe=> shoe.type === 'type');
+    else {results=results.filter(shoe=> shoe.type === type);
 
     }
      res.send(results);
